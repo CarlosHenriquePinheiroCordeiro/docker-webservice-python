@@ -14,5 +14,5 @@ class BoContatoService(object):
 #    cherrypy.config.update(config)
 #    cherrypy.quickstart(BoContatoService())
 
-request = requests.get("http://localhost:8082/process?numero=10")
-print(request.content)
+#request = requests.get("http://localhost:8082/process?numero=10")
+#print(request.content)

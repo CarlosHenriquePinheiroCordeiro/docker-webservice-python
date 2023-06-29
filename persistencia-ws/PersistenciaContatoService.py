@@ -8,7 +8,7 @@ class PersistenciaContatoService(object):
     def process(self):
         return "Hello World"
     
-if __name__ == '__main__':
-    config = {'server.socket_host': '0.0.0.0'}
-    cherrypy.config.update(config)
-    cherrypy.quickstart(PersistenciaContatoService())
+#if __name__ == '__main__':
+#    config = {'server.socket_host': '0.0.0.0'}
+#    cherrypy.config.update(config)
+#    cherrypy.quickstart(PersistenciaContatoService())
