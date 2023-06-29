@@ -1,5 +1,5 @@
 import cherrypy
-import requests
+
 
 class BoContatoService(object):
 
@@ -9,10 +9,7 @@ class BoContatoService(object):
     def process(self, numero):
         return "Hello World: "+numero
     
-#if __name__ == '__main__':
-#    config = {'server.socket_host': '0.0.0.0'}
-#    cherrypy.config.update(config)
-#    cherrypy.quickstart(BoContatoService())
-
-#request = requests.get("http://localhost:8082/process?numero=10")
-#print(request.content)
+if __name__ == '__main__':
+    config = {'server.socket_host': '0.0.0.0'}
+    cherrypy.config.update(config)
+    cherrypy.quickstart(BoContatoService())

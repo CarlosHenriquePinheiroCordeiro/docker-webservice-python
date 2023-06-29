@@ -4,6 +4,6 @@ RUN pip install CherryPy
 
 COPY PersistenciaContatoService.py .
 
-EXPOSE 8081
+EXPOSE 8083
 
 ENTRYPOINT ["python", "PersistenciaContatoService.py"]
