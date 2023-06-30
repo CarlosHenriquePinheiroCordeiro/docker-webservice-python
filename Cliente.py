@@ -2,12 +2,12 @@ from view.View import View
 import requests
 
 def listar(oView):
-    print(oView.listar())
+    print(callListar())
     return True
 
 def callListar():
     #chamar WS de listagem
-    return []
+    return requests.get("http://localhost:8081/process?sAcao=1&sParametros={}")
 
 def incluir(oView):
     aValores = oView.incluir()

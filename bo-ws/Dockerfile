@@ -1,6 +1,7 @@
 FROM python
 
 RUN pip install CherryPy
+RUN pip install requests
 
 COPY BoContatoService.py .
 
