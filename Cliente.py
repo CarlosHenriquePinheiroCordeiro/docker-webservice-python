@@ -2,29 +2,32 @@ from view.View import View
 import requests
 
 def listar(oView):
-    print(callListar())
+    callListar(oView)
     return True
 
-def callListar():
-    #chamar WS de listagem
-    return requests.get("http://localhost:8081/process?sAcao=1&sParametros={}")
+def callListar(oView):
+    "Chama o WS de listagem"
+    oView.listar(str(requests.get("http://localhost:8082/process?sAcao=1&sParametros={}").content).replace('"', '').replace('b{', '{').replace("'", '"').split('\\n'))
 
 def incluir(oView):
-    aValores = oView.incluir()
-    return True
+    return callIncluir(oView.incluir())
 
-def callIncluir(sNome, iTipo, sContato):
+def callIncluir(sJsonParametros):
+    "Chama o WS de inclusão"
     print("Processando...")
     try:
-        #chamar WS de listagem
-        requests.get("http://localhost:8082/process?numero=10")
+        requests.get("http://localhost:8082/process?sAcao=2&sParametros="+sJsonParametros)
     except:
         print("Ocorreu um erro de conexão com o serviço")
+    return True
 
 
 def excluir(oView):
-    print(oView.excluir())
+    callExcluir(oView.excluir())
     return True
+
+def callExcluir(sJsonParametros):
+    requests.get("http://localhost:8082/process?sAcao=3&sParametros="+sJsonParametros)
 
 def encerrar(oView):
     return False

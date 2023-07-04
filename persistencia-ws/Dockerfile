@@ -6,6 +6,4 @@ RUN pip install pymongo
 
 COPY PersistenciaContatoService.py .
 
-EXPOSE 8083
-
 ENTRYPOINT ["python", "PersistenciaContatoService.py"]

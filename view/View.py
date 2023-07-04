@@ -1,3 +1,5 @@
+import json
+
 class View:
 
     def menuAcao(self):
@@ -12,7 +14,13 @@ class View:
         return int(input("Digite aqui: "))
     
     def listar(self, aContatos):
-        return "Listando contatos:"
+        print("--------------------------------------------------------------------------------------------------------------")
+        print("Listando contatos:")
+        print("--------------------------------------------------------------------------------------------------------------")
+        for sContato in aContatos:
+                if sContato != '':
+                    oContato = json.loads(sContato)
+                    print("ID: "+str(oContato['id'])+" ; Nome: "+str(oContato['nome'])+" ; Descrição: "+str(oContato['descricao']))
     
     def incluir(self):
         aTipo = ["Telefone", "Celular", "Email", "Site"]
@@ -26,9 +34,9 @@ class View:
         print("4. Site     - Exemplo: site.com.br")
         iTipo = int(input("Tipo: "))
         print("--------------------------------------------------------------------------------------------------------------")
-        sContato = input("Informe o "+aTipo[iTipo-1]+": ")
+        sDescricao = input("Informe o "+aTipo[iTipo-1]+": ")
         print("--------------------------------------------------------------------------------------------------------------")
-        return [sNome, iTipo, sContato]
+        return '{"sNome":"'+sNome+'", "iTipo":"'+str(iTipo)+'", "sDescricao":"'+sDescricao+'"}'
     
     def excluir(self):
-        return "Excluindo"
+        return '{"sId":"'+str(input("Informe o ID que deseja excluir o contato"))+'"}'

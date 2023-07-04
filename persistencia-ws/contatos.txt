@@ -1,6 +1,1 @@
-{'id': 1, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
-{'id': 2, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
-{'id': 3, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
-{'id': 4, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
-{'id': 5, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
-{'id': 6, 'nome': 'Carlos', 'descricao': 'adasdasdasd'}
+{"id": 3, "nome": "testeCliente2", "descricao": "testedois@gmail.com"}
