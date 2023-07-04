@@ -3,6 +3,7 @@ import json
 class View:
 
     def menuAcao(self):
+        "Printa o menu principal de ações para o usuário"
         print("##############################################################################################################")
         print("Contatos")
         print("##############################################################################################################")
@@ -14,6 +15,7 @@ class View:
         return int(input("Digite aqui: "))
     
     def listar(self, aContatos):
+        "Printa a listagem de contatos"
         print("--------------------------------------------------------------------------------------------------------------")
         print("Listando contatos:")
         print("--------------------------------------------------------------------------------------------------------------")
@@ -23,6 +25,7 @@ class View:
                     print("ID: "+str(oContato['id'])+" ; Nome: "+str(oContato['nome'])+" ; Descrição: "+str(oContato['descricao']))
     
     def incluir(self):
+        "Printa o processo interativo da inclusão de contato"
         aTipo = ["Telefone", "Celular", "Email", "Site"]
         print("--------------------------------------------------------------------------------------------------------------")
         sNome = input("Informe o nome do contato: ")
@@ -39,4 +42,19 @@ class View:
         return '{"sNome":"'+sNome+'", "iTipo":"'+str(iTipo)+'", "sDescricao":"'+sDescricao+'"}'
     
     def excluir(self):
+        "Printa o processo interativo de exclusão do contato"
         return '{"sId":"'+str(input("Informe o ID que deseja excluir o contato"))+'"}'
+    
+    def mensagemIncluir(self, bSucesso):
+        "Printa o resultado da inclusão"
+        sMensagem = "Ocorreu um erro durante a inclusão do contato"
+        if bSucesso:
+            sMensagem = "Contato incluído com sucesso"
+        print(sMensagem)
+            
+    def mensagemExcluir(self, bSucesso):
+        "Printa o resultado da exclusão"
+        sMensagem = "Ocorreu um erro durante a exclusão do contato"
+        if bSucesso:
+            sMensagem = "Contato excluído com sucesso"
+        print(sMensagem)

@@ -10,7 +10,18 @@ class FacadeService(object):
 
     def callIncluir(self, aParametros):
         "Chama o WS de inclusão, de acordo com os parâmetros informados"
-        return requests.get("http://localhost:8084/processaInclusao?sNome="+str(aParametros["sNome"])+"&sDescricao="+str(aParametros["sDescricao"])).content
+        sSucesso = 'False'
+        if self.callValidacaoContato(aParametros["sTipo"], aParametros[["sDescricao"]]):
+            sSucesso = requests.get("http://localhost:8084/processaInclusao?sNome="+str(aParametros["sNome"])+"&sDescricao="+str(aParametros["sDescricao"])).content
+        return sSucesso
+
+    def callValidacaoContato(self, iTipo, sContato):
+        "Chama o WS de validação, permitindo ou não a exclusão do contato"
+        bRetorno  = True
+        sResposta = str(requests.get("http://localhost:8086/validaContato?sTipo="+str(iTipo)+"&sContato="+sContato).content).replace('b', '').replace("'", '')
+        if sResposta == 'False':
+            bRetorno = False
+        return bRetorno
 
     def callExcluir(self, aParametros):
         "Chama o WS de exclusão, de acordo com os parâmetros informados"

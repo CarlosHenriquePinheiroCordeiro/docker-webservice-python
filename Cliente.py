@@ -10,7 +10,8 @@ def callListar(oView):
     oView.listar(str(requests.get("http://localhost:8082/process?sAcao=1&sParametros={}").content).replace('"', '').replace('b{', '{').replace("'", '"').split('\\n'))
 
 def incluir(oView):
-    return callIncluir(oView.incluir())
+    "Invoca a chamada do WS de inclusão"
+    return oView.mensagemIncluir(callIncluir(oView.incluir()))
 
 def callIncluir(sJsonParametros):
     "Chama o WS de inclusão"
@@ -23,13 +24,16 @@ def callIncluir(sJsonParametros):
 
 
 def excluir(oView):
-    callExcluir(oView.excluir())
+    "Invoca a chamada do WS de exclusão"
+    oView.mensagemExcluir(callExcluir(oView.excluir()))
     return True
 
 def callExcluir(sJsonParametros):
+    "Chama o WS de exclusão"
     requests.get("http://localhost:8082/process?sAcao=3&sParametros="+sJsonParametros)
 
 def encerrar(oView):
+    "Encerra o programa"
     return False
 
 bExecutando = True
@@ -40,6 +44,5 @@ aAcoes      = [
     excluir,
     encerrar
 ]
-
 while bExecutando:
     bExecutando = aAcoes[oView.menuAcao()-1](oView)

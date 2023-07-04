@@ -38,7 +38,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância I do banco"
         if self.CnxI is None:
             try:
-                self.CnxI = MongoClient("localhost", 8085)
+                self.CnxI = MongoClient("localhost", 8087)
             except:
                 None
         return self.CnxI
@@ -47,7 +47,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância II do banco"
         if self.CnxII is None:
             try:
-                self.CnxII = MongoClient("localhost", 8086)
+                self.CnxII = MongoClient("localhost", 8088)
             except:
                 None
         return self.CnxII
@@ -56,7 +56,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância III do banco"
         if self.CnxIII is None:
             try:
-                self.CnxIII = MongoClient("localhost", 8087)
+                self.CnxIII = MongoClient("localhost", 8089)
             except:
                 None
         return self.CnxIII
