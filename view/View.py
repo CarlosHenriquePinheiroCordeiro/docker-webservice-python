@@ -20,7 +20,7 @@ class View:
         print("Listando contatos:")
         print("--------------------------------------------------------------------------------------------------------------")
         for sContato in aContatos:
-                if sContato != '':
+                if sContato != '' and sContato != "'":
                     oContato = json.loads(sContato)
                     print("ID: "+str(oContato['id'])+" ; Nome: "+str(oContato['nome'])+" ; Descrição: "+str(oContato['descricao']))
     
@@ -39,7 +39,7 @@ class View:
         print("--------------------------------------------------------------------------------------------------------------")
         sDescricao = input("Informe o "+aTipo[iTipo-1]+": ")
         print("--------------------------------------------------------------------------------------------------------------")
-        return '{"sNome":"'+sNome+'", "iTipo":"'+str(iTipo)+'", "sDescricao":"'+sDescricao+'"}'
+        return '{"sNome":"'+sNome+'", "sTipo":"'+str(iTipo)+'", "sDescricao":"'+sDescricao+'"}'
     
     def excluir(self):
         "Printa o processo interativo de exclusão do contato"

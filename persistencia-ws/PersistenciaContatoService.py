@@ -31,8 +31,9 @@ class PersistenciaContatoService(object):
         content = self.getContentTxt()
         id      = 0
         if content != '':
-            id = len(self.getTxt("r").readlines())
-        return id+1
+            aContatos = str(self.getTxt("r").read()).split('\\n')
+            id = json.loads(aContatos[len(aContatos)-1])['id']
+        return str(int(id)+1)
     
     def getCnxI(self):
         "Retorna a conexão com a instância I do banco"
@@ -84,7 +85,7 @@ class PersistenciaContatoService(object):
         bRetorno = True
         try:
             oTxt = self.getTxt()
-            oTxt.write(str(self.getJsonDados(iId, sNome, sDescricao))+"\n")
+            oTxt.write(str(self.getJsonDados(iId, sNome, sDescricao)).replace("'", '"')+"\n")
             oTxt.close()
         except:
             bRetorno = False
