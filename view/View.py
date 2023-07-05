@@ -45,10 +45,10 @@ class View:
         "Printa o processo interativo de exclusão do contato"
         return '{"sId":"'+str(input("Informe o ID que deseja excluir o contato"))+'"}'
     
-    def mensagemIncluir(self, bSucesso):
+    def mensagemIncluir(self, sSucesso):
         "Printa o resultado da inclusão"
         sMensagem = "Ocorreu um erro durante a inclusão do contato"
-        if bSucesso:
+        if sSucesso == 'True':
             sMensagem = "Contato incluído com sucesso"
         print(sMensagem)
             

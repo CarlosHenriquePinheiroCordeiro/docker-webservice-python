@@ -1,0 +1,25 @@
+services:
+  facade:
+    image: py-ws-facade
+    ports:
+      - "8080:8080"
+  persistencia:
+    image: py-ws-persistencia
+    ports:
+      - "8081:8080"
+  bo:
+    image: py-ws-bo
+    ports:
+      - "8082:8080"
+  mg1:
+    image: mg-i
+    ports:
+      - "8085:27017"
+  mg2:
+    image: mg-ii
+    ports:
+      - "8086:27017"
+  mg3:
+    image: mg-iii
+    ports:
+      - "8087:27017"
