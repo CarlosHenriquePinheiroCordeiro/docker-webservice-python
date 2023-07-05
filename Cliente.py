@@ -7,7 +7,8 @@ def listar(oView):
 
 def callListar(oView):
     "Chama o WS de listagem"
-    oView.listar(str(requests.get("http://localhost:8082/process?sAcao=1&sParametros={}").content).replace('"', '').replace('b{', '{').replace("'", '"').split('\\n'))
+    print(str(requests.get("http://localhost:8080/process?sAcao=1&sParametros={}").content))
+    #oView.listar(str(requests.get("http://localhost:8080/process?sAcao=1&sParametros={}").content).replace('"', '').replace('b{', '{').replace("'", '"').split('\\n'))
 
 def incluir(oView):
     "Invoca a chamada do WS de inclusão"
@@ -17,7 +18,7 @@ def callIncluir(sJsonParametros):
     "Chama o WS de inclusão"
     print("Processando...")
     try:
-        requests.get("http://localhost:8082/process?sAcao=2&sParametros="+sJsonParametros)
+        requests.get("http://localhost:8080/process?sAcao=2&sParametros="+sJsonParametros)
     except:
         print("Ocorreu um erro de conexão com o serviço")
     return True
@@ -30,7 +31,7 @@ def excluir(oView):
 
 def callExcluir(sJsonParametros):
     "Chama o WS de exclusão"
-    requests.get("http://localhost:8082/process?sAcao=3&sParametros="+sJsonParametros)
+    requests.get("http://localhost:8080/process?sAcao=3&sParametros="+sJsonParametros)
 
 def encerrar(oView):
     "Encerra o programa"

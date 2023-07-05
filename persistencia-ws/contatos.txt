@@ -1,1 +1,0 @@
-{"id": 3, "nome": "testeCliente2", "descricao": "testedois@gmail.com"}
