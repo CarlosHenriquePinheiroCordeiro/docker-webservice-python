@@ -31,8 +31,8 @@ class PersistenciaContatoService(object):
         content = self.getContentTxt()
         id      = 0
         if content != '':
-            aContatos = str(self.getTxt("r").read()).split('\\n')
-            id = json.loads(aContatos[len(aContatos)-1])['id']
+            aContatos = content.split('\n')
+            id = json.loads(aContatos[len(aContatos)-2])['id']
         return str(int(id)+1)
     
     def getCnxI(self):
@@ -77,8 +77,8 @@ class PersistenciaContatoService(object):
         iId      = self.getNovoIdContato()
         bSucesso = False
         bSucesso = self.incluiContatoTxt  (iId, sNome, sDescricao)    or bSucesso
-        bSucesso = self.processaInclusaoBanco(iId, sNome, sDescricao) or bSucesso
-        return bSucesso
+        #bSucesso = self.processaInclusaoBanco(iId, sNome, sDescricao) or bSucesso
+        return str(bSucesso)
 
     def incluiContatoTxt(self, iId, sNome, sDescricao):
         "Inclui o novo contato no arquivo txt"
@@ -116,8 +116,8 @@ class PersistenciaContatoService(object):
         "Processa a exclusão completa de um contato"
         bSucesso = False
         bSucesso = self.excluiContatoTxt(int(sId))   or False
-        bSucesso = self.processaExclusaoContatoBanco(int(sId)) or False
-        return bSucesso
+        #bSucesso = self.processaExclusaoContatoBanco(int(sId)) or False
+        return str(bSucesso)
     
     def excluiContatoTxt(self, iId):
         "Executa a exclusão de um contato no TXT através do seu ID"

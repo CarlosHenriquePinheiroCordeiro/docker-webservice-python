@@ -8,3 +8,10 @@ O primeiro WebService - "facade-ws" - se trata de uma "faixada", ou Facade, que 
 Para a concepção do WebService em si, será brevemente utilizado a biblioteca CherryPy.
 
 Referente a persistência, será utilizado o banco de dados não relacional MongoDB, também containerizado.
+
+Conforme o arquivo do docker-compose, devem ser criadas as imagens:
+    py-ws-facade            (Dockerfile da pasta "facade-ws")
+    py-ws-bo                (Dockerfile da pasta "bo-ws")
+    py-ws-persistencia      (Dockerfile da pasta "persistencia-ws")
+    mg-i, mg-ii e mg-iii    (Dockerfile da pasta "mongodb")
+Para então, serem estruturados um container para cada imagem criada.

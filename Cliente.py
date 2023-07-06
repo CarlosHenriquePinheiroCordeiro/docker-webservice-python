@@ -10,7 +10,7 @@ def callListar(oView):
     sRetorno = str(requests.get("http://localhost:8080/process?sAcao=1&sParametros={}").content)
     if sRetorno == "b''":
         sRetorno = ''
-    sRetorno = sRetorno.replace('b\"{', '{').split('\\n')
+    sRetorno = sRetorno.replace("b\'{", '{').replace('b\"{', '{').split('\\n')
     oView.listar(sRetorno)
 
 def incluir(oView):
