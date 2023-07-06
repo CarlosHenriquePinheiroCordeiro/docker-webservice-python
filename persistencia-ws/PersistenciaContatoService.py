@@ -1,6 +1,6 @@
 import cherrypy
 import json
-from pymongo import MongoClient
+import pymongo
 
 class PersistenciaContatoService(object):
 
@@ -39,7 +39,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância I do banco"
         if self.CnxI is None:
             try:
-                self.CnxI = MongoClient("mg1", 8085)
+                self.CnxI = pymongo.MongoClient("mg1", 27017)
             except:
                 None
         return self.CnxI
@@ -48,7 +48,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância II do banco"
         if self.CnxII is None:
             try:
-                self.CnxII = MongoClient("mg2", 8086)
+                self.CnxII = pymongo.MongoClient("mg2", 27017)
             except:
                 None
         return self.CnxII
@@ -57,7 +57,7 @@ class PersistenciaContatoService(object):
         "Retorna a conexão com a instância III do banco"
         if self.CnxIII is None:
             try:
-                self.CnxIII = MongoClient("mg3", 8087)
+                self.CnxIII = pymongo.MongoClient("mg3", 27017)
             except:
                 None
         return self.CnxIII
@@ -77,7 +77,7 @@ class PersistenciaContatoService(object):
         iId      = self.getNovoIdContato()
         bSucesso = False
         bSucesso = self.incluiContatoTxt  (iId, sNome, sDescricao)    or bSucesso
-        #bSucesso = self.processaInclusaoBanco(iId, sNome, sDescricao) or bSucesso
+        bSucesso = self.processaInclusaoBanco(iId, sNome, sDescricao) or bSucesso
         return str(bSucesso)
 
     def incluiContatoTxt(self, iId, sNome, sDescricao):
@@ -106,17 +106,17 @@ class PersistenciaContatoService(object):
     def processaInclusaoBanco(self, iId, sNome, sDescricao):
         "Processa a inclusão nas três instâncias do MongoDB"
         bSucesso = False
-        bSucesso = bSucesso or self.incluiContatoBanco(self.getCnxI() , iId, sNome, sDescricao)
-        bSucesso = bSucesso or self.incluiContatoBanco(self.getCnxII() , iId, sNome, sDescricao)
-        bSucesso = bSucesso or self.incluiContatoBanco(self.getCnxIII(), iId, sNome, sDescricao)
+        bSucesso = self.incluiContatoBanco(self.getCnxI()  , iId, sNome, sDescricao) or bSucesso
+        bSucesso = self.incluiContatoBanco(self.getCnxII() , iId, sNome, sDescricao) or bSucesso
+        bSucesso = self.incluiContatoBanco(self.getCnxIII(), iId, sNome, sDescricao) or bSucesso
         return bSucesso
 
     @cherrypy.expose
     def processaExclusao(self, sId):
         "Processa a exclusão completa de um contato"
         bSucesso = False
-        bSucesso = self.excluiContatoTxt(int(sId))   or False
-        #bSucesso = self.processaExclusaoContatoBanco(int(sId)) or False
+        bSucesso = self.excluiContatoTxt(int(sId))             or False
+        bSucesso = self.processaExclusaoContatoBanco(int(sId)) or False
         return str(bSucesso)
     
     def excluiContatoTxt(self, iId):
@@ -144,7 +144,7 @@ class PersistenciaContatoService(object):
         "Exclusão um contato através do seu ID na instância do banco informada"
         bSucesso = None
         try:
-            self.getCollectionContatos(oConexao).delete_one({"id":iId})
+            self.getCollectionContatos(oConexao).delete_one({"id":str(iId)})
             bSucesso = True
         except:
             bSucesso = False
