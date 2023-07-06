@@ -23,7 +23,7 @@ def callIncluir(sJsonParametros):
     print("Processando...")
     sSucesso = None
     try:
-        sSucesso = requests.get("http://localhost:8080/process?sAcao=2&sParametros="+sJsonParametros).content
+        sSucesso = str(requests.get("http://localhost:8080/process?sAcao=2&sParametros="+sJsonParametros).content).replace("b'", "'").replace("'", '')
     except:
         print("Ocorreu um erro de conexão com o serviço")
         sSucesso = False
